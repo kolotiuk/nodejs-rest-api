@@ -1,14 +1,13 @@
 const contacts = require("../models/contacts");
 const { ctrlWrapper } = require("../helpers");
-const { addSchema } = require("../schemas");
 const { HttpError } = require("../helpers");
 
-const listContacts = async (req, res, next) => {
+const listContacts = async (req, res) => {
   const result = await contacts.listContacts();
   res.json(result);
 };
 
-const getContactById = async (req, res, next) => {
+const getContactById = async (req, res) => {
   const { contactId } = req.params;
   const result = await contacts.getContactById(contactId);
   if (!result) {
@@ -17,17 +16,12 @@ const getContactById = async (req, res, next) => {
   res.json(result);
 };
 
-const addContact = async (req, res, next) => {
-  const { error } = addSchema.validate(req.body);
-  if (error) {
-    const name = error.details.map((el) => el.context.label);
-    throw HttpError(400, `missing required ${name[0]} field`);
-  }
+const addContact = async (req, res) => {
   const result = await contacts.addContact(req.body);
   res.status(201).json(result);
 };
 
-const removeContact = async (req, res, next) => {
+const removeContact = async (req, res) => {
   const { contactId } = req.params;
   const result = await contacts.removeContact(contactId, req.body);
   if (!result) {
@@ -38,14 +32,7 @@ const removeContact = async (req, res, next) => {
   });
 };
 
-const updateContact = async (req, res, next) => {
-  const { error } = addSchema.validate(req.body);
-  if (error) {
-    throw HttpError(400, error.message);
-  }
-  if (!Object.keys(req.body).length) {
-    throw HttpError(400, "missing fields");
-  }
+const updateContact = async (req, res) => {
   const { contactId } = req.params;
   const result = await contacts.updateContact(contactId, req.body);
   if (!result) {
