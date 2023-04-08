@@ -7,7 +7,7 @@ const {
   validateUpdateContact,
 } = require("../../middlewares");
 
-const { addSchema } = require("../../schemas/contacts-schemas");
+const { addSchema } = require("../../schemas");
 const { updateSchema } = require("../../schemas");
 
 const router = express.Router();
