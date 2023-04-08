@@ -7,7 +7,8 @@ const {
   validateUpdateContact,
 } = require("../../middlewares");
 
-const schemas = require("../../schemas/contacts-schemas");
+const { addSchema } = require("../../schemas/contacts-schemas");
+const { updateSchema } = require("../../schemas");
 
 const router = express.Router();
 
@@ -15,13 +16,13 @@ router.get("/", ctrl.listContacts);
 
 router.get("/:contactId", ctrl.getContactById);
 
-router.post("/", validatePostContact(schemas.addSchema), ctrl.addContact);
+router.post("/", validatePostContact(addSchema), ctrl.addContact);
 
 router.delete("/:contactId", ctrl.removeContact);
 
 router.put(
   "/:contactId",
-  validateUpdateContact(schemas.addSchema),
+  validateUpdateContact(updateSchema),
   ctrl.updateContact
 );
 
