@@ -18,13 +18,8 @@ const contactSchema = new Schema(
       default: false,
     },
   },
-  { versionKey: false, timestamps: true }
+  { versionKey: false }
 );
-
-// contactSchema.post("save", (error, data, next) => {
-//   console.log("error:", error);
-//   next();
-// });
 
 const addSchema = Joi.object({
   name: Joi.string().required(),
