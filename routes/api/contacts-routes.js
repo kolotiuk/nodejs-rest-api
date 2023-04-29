@@ -7,11 +7,14 @@ const {
   validateUpdateContact,
   validateUpdateFavorite,
   isValidId,
+  authenticate,
 } = require("../../middlewares");
 
 const { schemas } = require("../../models/contact");
 
 const router = express.Router();
+
+router.use(authenticate);
 
 router.get("/", ctrl.listContacts);
 
