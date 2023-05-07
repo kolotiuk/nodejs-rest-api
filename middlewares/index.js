@@ -3,6 +3,7 @@ const validateUpdateContact = require("./validateUpdateContact");
 const validateUpdateFavorite = require("./validateUpdateFavorite");
 const isValidId = require("./isValidId");
 const authenticate = require("./authenticate");
+const upload = require("./upload");
 
 module.exports = {
   validatePostContact,
@@ -10,4 +11,5 @@ module.exports = {
   validateUpdateFavorite,
   isValidId,
   authenticate,
+  upload,
 };
